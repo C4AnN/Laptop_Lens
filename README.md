@@ -1,6 +1,6 @@
 # Laptop Lens
 Team ID : C241-PS345 Team Member : 
-(ML) M355D4KY2635 – Ghufron Tamami, 
+(ML) M355D4KY2635 – Ghufron Tamami, \n
 (ML) M355D4KY2970 – Fernando Candra Yulianto, 
 (ML) M278D4KX1914 – Astimawarni, 
 (CC) C309D4KY1232 – Gabriel Moody Waworundeng, 
