@@ -4,14 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#DCDCDC"
     android:padding="32dp"
     android:gravity="center"
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="201dp"
-        android:layout_height="25dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="24dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
