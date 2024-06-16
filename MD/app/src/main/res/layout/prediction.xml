@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="32dp"
+    tools:context=".Prediction">
+
+    <ImageView
+        android:layout_width="201dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="32dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Low-end Product Prediction"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="153dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/oval_button"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Mid-end Product Prediction"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="153dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/oval_button"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="High-end Product Prediction"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="153dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/oval_button"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
