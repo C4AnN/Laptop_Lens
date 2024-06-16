@@ -44,6 +44,7 @@ class InputProduct : AppCompatActivity() {
             datePickerDialog.show()
         }
 
+
         val btnsaveinput = findViewById<Button>(R.id.btnsaveinput)
         btnsaveinput.setOnClickListener {
             intent = Intent(this, Inventory::class.java)

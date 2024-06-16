@@ -9,10 +9,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true" >
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="250dp"
@@ -26,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/oval_button"
             android:elevation="4dp"
@@ -35,10 +36,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_width="315dp"
+            android:layout_height="400dp"
             android:background="@drawable/background"
-            android:elevation="4dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="5dp"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="24dp">
@@ -68,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:padding="10dp">
 
                 <Button
@@ -75,6 +79,7 @@
                     android:layout_width="146dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:backgroundTint="#4F772D"
                     android:text="Predict"
                     android:textAllCaps="false"
@@ -84,8 +89,9 @@
             </LinearLayout>
 
         </LinearLayout>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/menuprediction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,8 +134,6 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="prediction_profile"
                 android:src="@drawable/profile_abu" />
-
-        </LinearLayout>
 
     </LinearLayout>
 

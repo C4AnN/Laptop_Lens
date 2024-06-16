@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dcdcdc"
+    android:background="@drawable/background"
     android:padding="0dp"
     tools:context=".Home">
 
@@ -111,7 +111,7 @@
         <LinearLayout
             android:id="@+id/menuhome"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/oval3"
             android:gravity="center">
 
