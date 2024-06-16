@@ -102,11 +102,7 @@
 
     <LinearLayout
         android:id="@+id/menuinventory"
-<<<<<<< HEAD
-        android:layout_width="wrap_content"
-=======
         android:layout_width="match_parent"
->>>>>>> 529d3b390a6d822b1703ffeeb8c3b2945f3b449b
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/oval3"
