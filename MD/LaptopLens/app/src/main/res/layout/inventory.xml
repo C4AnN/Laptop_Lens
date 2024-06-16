@@ -90,8 +90,8 @@
 
     <LinearLayout
         android:id="@+id/menuinventory"
-        android:layout_width="302dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/oval3"
         android:gravity="center">

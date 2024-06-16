@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="32dp"
+    android:background="@drawable/background"
+    android:padding="0dp"
     tools:context=".Profile">
 
     <ImageView
@@ -83,11 +83,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/menuprofile"
-            android:layout_width="302dp"
+            android:layout_width="500dp"
             android:layout_height="61dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
