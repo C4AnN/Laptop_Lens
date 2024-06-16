@@ -1,97 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="32dp"
-    android:gravity="center"
+    android:background="#dcdcdc"
+    android:padding="0dp"
     tools:context=".Inventory">
 
-    <ImageView
-        android:layout_width="201dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="24dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/logo" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/oval_button"
-        android:elevation="4dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
-    </LinearLayout>
+        android:gravity="center"
+        android:layout_alignParentTop="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="414dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="45dp"
             android:layout_marginBottom="24dp"
-            android:text="INVENTORY"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/logo" />
 
-        <Button
-            android:id="@+id/btninput"
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#E1E6D6"
-            android:drawablePadding="14dp"
-            android:hint="Input Product"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/oval_button"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="24dp">
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnrecord"
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#E1E6D6"
-            android:drawablePadding="14dp"
-            android:hint="Record Sale"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="315dp"
+            android:layout_height="414dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:background="@drawable/background"
+            android:padding="24dp">
 
-        <Button
-            android:id="@+id/btnstock"
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#E1E6D6"
-            android:drawablePadding="14dp"
-            android:hint="Product Stock"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="50dp"
+                android:text="INVENTORY"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btninput"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#E1E6D6"
+                android:drawablePadding="14dp"
+                android:hint="Input Product"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btnrecord"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#E1E6D6"
+                android:drawablePadding="14dp"
+                android:hint="Record Sale"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btnstock"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#E1E6D6"
+                android:drawablePadding="14dp"
+                android:hint="Product Stock"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/menuinventory"
-        android:layout_width="302dp"
-        android:layout_height="62dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/oval3"
         android:gravity="center">
@@ -134,4 +146,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
