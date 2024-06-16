@@ -137,7 +137,8 @@
             android:background="@drawable/oval_tepi"
             android:drawableLeft="@drawable/quantity"
             android:drawablePadding="14dp"
-            android:hint="e.g 1,2,3,..."
+            android:inputType="number"
+            android:hint="Only Number"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:textSize="15sp" />
