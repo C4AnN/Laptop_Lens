@@ -66,6 +66,18 @@
                 android:paddingTop="5dp"
                 android:textSize="15sp" />
 
+            <!-- Add this button inside the LinearLayout containing the EditText and other elements -->
+            <Button
+                android:id="@+id/btnUploadCSV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload CSV"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#4F772D"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,48 +104,48 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/menuprediction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/oval3"
-            android:gravity="center">
+        android:id="@+id/menuprediction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/oval3"
+        android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/image_home"
-                android:layout_width="67dp"
-                android:layout_height="61dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="prediction_home"
-                android:src="@drawable/home_abu" />
+        <ImageButton
+            android:id="@+id/image_home"
+            android:layout_width="67dp"
+            android:layout_height="61dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="prediction_home"
+            android:src="@drawable/home_abu" />
 
-            <ImageButton
-                android:id="@+id/image_predict"
-                android:layout_width="53dp"
-                android:layout_height="61dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="prediction_prediction"
-                android:src="@drawable/prediction_ijo" />
+        <ImageButton
+            android:id="@+id/image_predict"
+            android:layout_width="53dp"
+            android:layout_height="61dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="prediction_prediction"
+            android:src="@drawable/prediction_ijo" />
 
-            <ImageButton
-                android:id="@+id/image_inventory"
-                android:layout_width="56dp"
-                android:layout_height="51dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="prediction_inventory"
-                android:src="@drawable/inventory_abu" />
+        <ImageButton
+            android:id="@+id/image_inventory"
+            android:layout_width="56dp"
+            android:layout_height="51dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="prediction_inventory"
+            android:src="@drawable/inventory_abu" />
 
-            <ImageButton
-                android:id="@+id/image_profile"
-                android:layout_width="54dp"
-                android:layout_height="61dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="prediction_profile"
-                android:src="@drawable/profile_abu" />
+        <ImageButton
+            android:id="@+id/image_profile"
+            android:layout_width="54dp"
+            android:layout_height="61dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="prediction_profile"
+            android:src="@drawable/profile_abu" />
 
     </LinearLayout>
 
