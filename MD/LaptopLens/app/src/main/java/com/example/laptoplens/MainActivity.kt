@@ -1,6 +1,5 @@
 package com.example.laptoplens
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 handleSignIn()
                 // Close the keyboard
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(passwordsignin.windowToken, 0)
                 true
             } else {
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        apiService = RetrofitClient().instance.create(ApiService::class.java)
+        apiService = RetrofitClient.apiService
     }
 
     private fun handleSignIn() {
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                     if (responseBody?.status == "success") {
                         Log.d("Login", "Login success: ${responseBody.message}")
                         Toast.makeText(this@MainActivity, "Login successful!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@MainActivity, Inventory::class.java)
+                        val intent = Intent(this@MainActivity, Home::class.java)
                         Log.d("Login", "Starting Inventory Activity")
                         startActivity(intent)
                     } else {

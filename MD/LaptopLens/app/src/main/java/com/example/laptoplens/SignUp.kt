@@ -1,6 +1,5 @@
 package com.example.laptoplens
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
@@ -36,7 +35,7 @@ class SignUp : AppCompatActivity() {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 validateInput()
                 // Close the keyboard
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(reenterpassword.windowToken, 0)
                 true
             } else {
@@ -55,9 +54,10 @@ class SignUp : AppCompatActivity() {
         btnSignin.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
-        apiService = RetrofitClient().instance.create(ApiService::class.java)
+        apiService = RetrofitClient.apiService
     }
 
     private fun validateInput(): Boolean {
@@ -120,18 +120,20 @@ class SignUp : AppCompatActivity() {
 
     private fun signUpUser() {
         val user = User(
-            firstname.text.toString(),
-            lastname.text.toString(),
-            email.text.toString(),
-            password.text.toString()
+            firstName = firstname.text.toString(),
+            lastName = lastname.text.toString(),
+            email = email.text.toString(),
+            password = password.text.toString(),
+            confirmPassword = reenterpassword.text.toString()
         )
 
         apiService.signUp(user).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful && response.body()?.status == "success") {
+                if (response.isSuccessful && response.body()?.message == "User created successfully") {
                     Toast.makeText(this@SignUp, "Sign up successful!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@SignUp, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this@SignUp, response.body()?.message ?: "Sign up failed", Toast.LENGTH_SHORT).show()
                 }
