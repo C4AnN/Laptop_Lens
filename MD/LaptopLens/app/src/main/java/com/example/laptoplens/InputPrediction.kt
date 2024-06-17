@@ -11,6 +11,15 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 
 class InputPrediction : AppCompatActivity() {
 
@@ -71,6 +80,7 @@ class InputPrediction : AppCompatActivity() {
         if (fileName != null) {
             inputCSV.setText(fileName)
             Toast.makeText(this, "CSV file selected: $fileName", Toast.LENGTH_SHORT).show()
+            uploadCSVFile(uri, fileName)
         } else {
             Toast.makeText(this, "Unable to get the CSV file", Toast.LENGTH_SHORT).show()
         }
@@ -88,5 +98,58 @@ class InputPrediction : AppCompatActivity() {
             }
         }
         return fileName
+    }
+
+    private fun uploadCSVFile(uri: Uri, fileName: String) {
+        try {
+            val tempFile = File(cacheDir, fileName)
+            val inputStream: InputStream? = contentResolver.openInputStream(uri)
+            val outputStream = FileOutputStream(tempFile)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+
+            val mediaType = "text/csv".toMediaTypeOrNull()
+            val requestBody = RequestBody.create(mediaType, tempFile)
+            val body = MultipartBody.Part.createFormData("file", tempFile.name, requestBody)
+
+            val call = RetrofitClient.apiService.uploadCSV(body)
+            call.enqueue(object : Callback<ApiResponse> {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    runOnUiThread {
+                        Toast.makeText(this@InputPrediction, "Failed to upload CSV file: ${t.message}", Toast.LENGTH_SHORT).show()
+                        t.printStackTrace()  // Log the stack trace for debugging
+                    }
+                }
+
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    runOnUiThread {
+                        if (response.isSuccessful) {
+                            Toast.makeText(this@InputPrediction, "CSV file successfully uploaded", Toast.LENGTH_SHORT).show()
+                            response.body()?.let {
+                                val predictions = it.message.split(",") // Assuming CSV predictions are comma-separated
+                                updatePredictionViews(predictions)
+                            }
+                        } else {
+                            val errorBody = response.errorBody()?.string()
+                            Toast.makeText(this@InputPrediction, "Failed to upload CSV file: $errorBody", Toast.LENGTH_SHORT).show()
+                            println("Response error: $errorBody")  // Log the error response for debugging
+                        }
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error handling file: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun updatePredictionViews(predictions: List<String>) {
+        val intent = Intent(this@InputPrediction, Prediction::class.java)
+        intent.putExtra("lowEndPrediction", predictions[0])
+        intent.putExtra("midEndPrediction", predictions[1])
+        intent.putExtra("highEndPrediction", predictions[2])
+        startActivity(intent)
     }
 }
