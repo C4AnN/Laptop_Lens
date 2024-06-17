@@ -127,8 +127,13 @@ class InputPrediction : AppCompatActivity() {
                         if (response.isSuccessful) {
                             Toast.makeText(this@InputPrediction, "CSV file successfully uploaded", Toast.LENGTH_SHORT).show()
                             response.body()?.let {
-                                val predictions = it.message.split(",") // Assuming CSV predictions are comma-separated
-                                updatePredictionViews(predictions)
+                                val message = it.message
+                                if (message != null) {
+                                    val predictions = message.split(",") // Assuming CSV predictions are comma-separated
+                                    navigateToPrediction(predictions)
+                                } else {
+                                    Toast.makeText(this@InputPrediction, "Invalid response from server", Toast.LENGTH_SHORT).show()
+                                }
                             }
                         } else {
                             val errorBody = response.errorBody()?.string()
@@ -144,12 +149,13 @@ class InputPrediction : AppCompatActivity() {
         }
     }
 
-
-    private fun updatePredictionViews(predictions: List<String>) {
+    private fun navigateToPrediction(predictions: List<String>) {
         val intent = Intent(this@InputPrediction, Prediction::class.java)
-        intent.putExtra("lowEndPrediction", predictions[0])
-        intent.putExtra("midEndPrediction", predictions[1])
-        intent.putExtra("highEndPrediction", predictions[2])
+        if (predictions.size >= 3) {
+            intent.putExtra("lowEndPrediction", predictions[0])
+            intent.putExtra("midEndPrediction", predictions[1])
+            intent.putExtra("highEndPrediction", predictions[2])
+        }
         startActivity(intent)
     }
 }

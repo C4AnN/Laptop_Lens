@@ -1,6 +1,7 @@
 package com.example.laptoplens
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,18 +29,22 @@ class Prediction : AppCompatActivity() {
                         displayPredictions(predictionResponse.result.high, highEndPredictionView)
                     }
                 } else {
+                    Log.e("Prediction", "Response not successful: ${response.errorBody()?.string()}")
                     displayError(lowEndPredictionView, midEndPredictionView, highEndPredictionView)
                 }
             }
 
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                Log.e("Prediction", "API call failed: ${t.message}", t)
                 displayError(lowEndPredictionView, midEndPredictionView, highEndPredictionView)
             }
         })
     }
 
     private fun displayPredictions(predictions: List<SalesData>, predictionView: LinearLayout) {
+        predictionView.removeAllViews()  // Clear previous views to avoid memory leaks
         predictions.forEach { prediction ->
+            Log.d("Prediction", "Displaying prediction: $prediction")
             predictionView.addView(createPredictionTextView("${prediction.date}: ${prediction.sales}"))
         }
     }
@@ -54,6 +59,10 @@ class Prediction : AppCompatActivity() {
 
     private fun displayError(lowEndPredictionView: LinearLayout, midEndPredictionView: LinearLayout, highEndPredictionView: LinearLayout) {
         val errorMessage = "Failed to load data"
+        Log.e("Prediction", errorMessage)
+        lowEndPredictionView.removeAllViews()  // Clear previous views to avoid memory leaks
+        midEndPredictionView.removeAllViews()  // Clear previous views to avoid memory leaks
+        highEndPredictionView.removeAllViews()  // Clear previous views to avoid memory leaks
         lowEndPredictionView.addView(createPredictionTextView(errorMessage))
         midEndPredictionView.addView(createPredictionTextView(errorMessage))
         highEndPredictionView.addView(createPredictionTextView(errorMessage))
