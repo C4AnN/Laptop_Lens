@@ -1,5 +1,9 @@
 package com.example.laptoplens
 
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 data class SalesData(
     val date: String,
     val sales: Int
@@ -35,10 +39,8 @@ data class LoginRequest(
     val password: String
 )
 
-data class LogoutRequest(
-    val email: String,
-    val password: String
-)
+
+
 
 
 

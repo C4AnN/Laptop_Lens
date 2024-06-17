@@ -1,12 +1,20 @@
 package com.example.laptoplens
 
 import android.os.Bundle
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Prediction : AppCompatActivity() {
 
@@ -14,48 +22,83 @@ class Prediction : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.prediction)
 
-        val lowEndPredictionView = findViewById<LinearLayout>(R.id.low_end_prediction_view)
-        val midEndPredictionView = findViewById<LinearLayout>(R.id.mid_end_prediction_view)
-        val highEndPredictionView = findViewById<LinearLayout>(R.id.high_end_prediction_view)
+        val lowEndChart = findViewById<LineChart>(R.id.low_end_chart)
+        val midEndChart = findViewById<LineChart>(R.id.mid_end_chart)
+        val highEndChart = findViewById<LineChart>(R.id.high_end_chart)
 
         // Fetch predictions from API
         RetrofitClient.apiService.getPredictions().enqueue(object : Callback<PredictionResponse> {
             override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.let { predictionResponse ->
-                        displayPredictions(predictionResponse.result.low, lowEndPredictionView)
-                        displayPredictions(predictionResponse.result.mid, midEndPredictionView)
-                        displayPredictions(predictionResponse.result.high, highEndPredictionView)
+                        Log.d("Prediction", "API call successful: $predictionResponse")
+                        displayPredictions(predictionResponse.result.low, lowEndChart)
+                        displayPredictions(predictionResponse.result.mid, midEndChart)
+                        displayPredictions(predictionResponse.result.high, highEndChart)
                     }
                 } else {
-                    displayError(lowEndPredictionView, midEndPredictionView, highEndPredictionView)
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("Prediction", "Response not successful: $errorBody")
+                    displayError(lowEndChart, midEndChart, highEndChart)
                 }
             }
 
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
-                displayError(lowEndPredictionView, midEndPredictionView, highEndPredictionView)
+                Log.e("Prediction", "API call failed: ${t.message}", t)
+                displayError(lowEndChart, midEndChart, highEndChart)
             }
         })
     }
 
-    private fun displayPredictions(predictions: List<SalesData>, predictionView: LinearLayout) {
-        predictions.forEach { prediction ->
-            predictionView.addView(createPredictionTextView("${prediction.date}: ${prediction.sales}"))
+    private fun displayPredictions(predictions: List<SalesData>, chart: LineChart) {
+        val entries = predictions.mapIndexed { index, salesData ->
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            try {
+                val date = dateFormat.parse(salesData.date)
+                val timestamp = date?.time ?: index.toFloat() // Default to index if parsing fails
+                Entry(timestamp.toFloat(), salesData.sales.toFloat())
+            } catch (e: Exception) {
+                Log.e("Prediction", "Error parsing date: ${salesData.date}", e)
+                Entry(index.toFloat(), salesData.sales.toFloat()) // Handle parsing error gracefully
+            }
+        }
+
+        val dataSet = LineDataSet(entries, "Sales Data").apply {
+            axisDependency = YAxis.AxisDependency.LEFT
+            color = resources.getColor(R.color.purple_500, theme)
+            valueTextColor = resources.getColor(R.color.black, theme)
+            valueTextSize = 12f
+        }
+
+        val lineData = LineData(dataSet)
+        chart.data = lineData
+        chart.invalidate()
+
+        val xAxis = chart.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.granularity = 1f
+
+        // Set custom value formatter for XAxis to display dates
+        xAxis.valueFormatter = object : ValueFormatter() {
+            private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            override fun getFormattedValue(value: Float): String {
+                val dateMillis = value.toLong()
+                return dateFormat.format(Date(dateMillis))
+            }
         }
     }
 
-    private fun createPredictionTextView(prediction: String): TextView {
-        return TextView(this).apply {
-            text = prediction
-            textSize = 18f
-            setTextColor(resources.getColor(R.color.black, theme))
-        }
-    }
-
-    private fun displayError(lowEndPredictionView: LinearLayout, midEndPredictionView: LinearLayout, highEndPredictionView: LinearLayout) {
+    private fun displayError(vararg charts: LineChart) {
         val errorMessage = "Failed to load data"
-        lowEndPredictionView.addView(createPredictionTextView(errorMessage))
-        midEndPredictionView.addView(createPredictionTextView(errorMessage))
-        highEndPredictionView.addView(createPredictionTextView(errorMessage))
+        Log.e("Prediction", errorMessage)
+        charts.forEach { chart ->
+            chart.clear()
+            val entries = listOf(Entry(0f, 0f))
+            val dataSet = LineDataSet(entries, errorMessage)
+            val lineData = LineData(dataSet)
+            chart.data = lineData
+            chart.invalidate()
+        }
     }
 }
