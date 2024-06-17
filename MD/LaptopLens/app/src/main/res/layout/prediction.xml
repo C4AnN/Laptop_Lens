@@ -37,18 +37,15 @@
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/low_end_prediction_view"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/low_end_chart"
                 android:layout_width="match_parent"
-                android:layout_height="153dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-            </LinearLayout>
+                android:padding="24dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,18 +55,15 @@
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/mid_end_prediction_view"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/mid_end_chart"
                 android:layout_width="match_parent"
-                android:layout_height="153dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-            </LinearLayout>
+                android:padding="24dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -79,18 +73,15 @@
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/high_end_prediction_view"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/high_end_chart"
                 android:layout_width="match_parent"
-                android:layout_height="153dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-            </LinearLayout>
+                android:padding="24dp" />
 
         </LinearLayout>
 
