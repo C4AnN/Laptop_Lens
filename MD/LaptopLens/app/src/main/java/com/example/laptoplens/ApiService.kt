@@ -19,6 +19,9 @@ interface ApiService {
     @POST("login")
     fun login(@Body loginRequest: LoginRequest): Call<ApiResponse>
 
+    @POST("logout")
+    fun logout(@Body logoutRequest: LogoutRequest): Call<ApiResponse>
+
     @GET("last-prediction")
     fun getPredictions(): Call<PredictionResponse>
 }

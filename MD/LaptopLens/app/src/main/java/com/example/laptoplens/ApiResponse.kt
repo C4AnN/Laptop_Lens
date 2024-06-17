@@ -35,5 +35,10 @@ data class LoginRequest(
     val password: String
 )
 
+data class LogoutRequest(
+    val email: String,
+    val password: String
+)
+
 
 

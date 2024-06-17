@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Profile : AppCompatActivity() {
     private lateinit var fullNameTextView: TextView
@@ -38,8 +42,7 @@ class Profile : AppCompatActivity() {
 
         val btnlogout = findViewById<Button>(R.id.btnlogout)
         btnlogout.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            logout()
         }
 
         val image_home = findViewById<ImageButton>(R.id.image_home)
@@ -58,6 +61,42 @@ class Profile : AppCompatActivity() {
         image_inventory.setOnClickListener {
             val intent = Intent(this, Inventory::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun logout() {
+        // Retrieve the stored email and password from SharedPreferences
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val email = sharedPreferences.getString("email", null)
+        val password = sharedPreferences.getString("password", null)
+
+        if (email != null && password != null) {
+            val logoutRequest = LogoutRequest(email, password)
+            val call = RetrofitClient.apiService.logout(logoutRequest)
+
+            call.enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful && response.body()?.status == "success") {
+                        // Clear the stored user data
+                        sharedPreferences.edit().clear().apply()
+
+                        Toast.makeText(this@Profile, "Logout berhasil!", Toast.LENGTH_SHORT).show()
+
+                        val intent = Intent(this@Profile, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@Profile, "Logout gagal: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Toast.makeText(this@Profile, "Logout gagal: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(this, "Tidak dapat menemukan kredensial pengguna.", Toast.LENGTH_SHORT).show()
         }
     }
 }
