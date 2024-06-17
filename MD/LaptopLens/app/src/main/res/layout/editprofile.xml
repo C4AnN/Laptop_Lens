@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#DCDCDC"
     android:padding="32dp"
     tools:context=".EditProfile">
 
@@ -19,11 +19,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="472dp"
+        android:layout_height="600dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
         android:elevation="4dp"
         android:orientation="vertical"
+        android:background="@drawable/background"
         android:padding="24dp">
 
         <TextView
@@ -55,26 +56,52 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/firstnameedit"
+            android:id="@+id/fullnameEdit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/oval_button"
             android:drawableLeft="@drawable/person"
             android:drawablePadding="14dp"
-            android:hint="First Name"
+            android:hint="Full Name"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/lastnameedit"
+            android:id="@+id/positionEdit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/oval_button"
             android:drawableLeft="@drawable/pen"
             android:drawablePadding="14dp"
-            android:hint="Last Name"
+            android:hint="Jabatan"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/phoneEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/oval_button"
+            android:drawableLeft="@drawable/pen"
+            android:drawablePadding="14dp"
+            android:hint="Phone"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/oval_button"
+            android:drawableLeft="@drawable/pen"
+            android:drawablePadding="14dp"
+            android:hint="Address"
             android:paddingLeft="8dp"
             android:paddingTop="5dp"
             android:textSize="15sp" />

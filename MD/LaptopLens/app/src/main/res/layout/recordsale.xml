@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#DCDCDC"
     android:padding="32dp"
     tools:context=".RecordSale">
 
@@ -33,6 +33,7 @@
         android:layout_marginBottom="24dp"
         android:elevation="4dp"
         android:orientation="vertical"
+        android:background="@drawable/background"
         android:padding="24dp">
 
         <TextView

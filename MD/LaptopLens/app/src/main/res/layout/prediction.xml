@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="32dp"
+    android:background="#DCDCDC"
+    android:padding="0dp"
     tools:context=".Prediction">
 
     <ImageView
@@ -26,7 +26,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/background"
             android:padding="32dp">
 
             <TextView

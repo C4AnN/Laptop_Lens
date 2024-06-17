@@ -7,22 +7,29 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 
-class EditProfile : AppCompatActivity()
-{
-    lateinit var firstnameedit : EditText
-    lateinit var lastnameedit: EditText
-    @SuppressLint("MissingInflatedId")
+class EditProfile : AppCompatActivity() {
+    lateinit var fullnameEdit: EditText
+    lateinit var positionEdit: EditText
+    lateinit var phoneEdit: EditText
+    lateinit var addressEdit: EditText
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.editprofile)
 
-        firstnameedit = findViewById(R.id.firstnameedit)
-        lastnameedit = findViewById(R.id.lastnameedit)
+        fullnameEdit = findViewById(R.id.fullnameEdit)
+        positionEdit = findViewById(R.id.positionEdit)
+        phoneEdit = findViewById(R.id.phoneEdit)
+        addressEdit = findViewById(R.id.addressEdit)
 
         val btnselesaiedit = findViewById<Button>(R.id.btnselesaiedit)
         btnselesaiedit.setOnClickListener {
-            intent = Intent(this, Profile::class.java)
+            val intent = Intent(this, Profile::class.java)
+            intent.putExtra("FULL_NAME", fullnameEdit.text.toString())
+            intent.putExtra("POSITION", positionEdit.text.toString())
+            intent.putExtra("PHONE", phoneEdit.text.toString())
+            intent.putExtra("ADDRESS", addressEdit.text.toString())
             startActivity(intent)
         }
     }
