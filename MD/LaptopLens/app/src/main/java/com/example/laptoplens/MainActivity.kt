@@ -67,11 +67,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (isLoggedIn()) {
-            // If logged in, move task to back (minimize app)
-            moveTaskToBack(true)
+            moveTaskToBack(true) // Minimize app if logged in
         } else {
-            // If not logged in, allow back press (normal behavior)
-            super.onBackPressed()
+            if (isLoggedOut()) {
+                finishAffinity() // Exit the app if it's the main activity
+            } else {
+                super.onBackPressed() // Otherwise, navigate back normally
+            }
         }
     }
 
@@ -138,7 +140,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
     private fun saveLoginDetails(email: String, token: String) {
         // Save login details to SharedPreferences
         val editor = sharedPreferences.edit()
@@ -147,9 +148,6 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
         Log.d("Login", "Saved token to SharedPreferences: $token")
     }
-
-
-
 
     private fun clearLoginDetails() {
         // Clear login details from SharedPreferences
@@ -164,6 +162,13 @@ class MainActivity : AppCompatActivity() {
         val email = sharedPreferences.getString("email", null)
         val token = sharedPreferences.getString("token", null)
         return !email.isNullOrEmpty() && !token.isNullOrEmpty()
+    }
+
+    private fun isLoggedOut(): Boolean {
+        // Check if user is logged out
+        val email = sharedPreferences.getString("email", null)
+        val token = sharedPreferences.getString("token", null)
+        return email.isNullOrEmpty() && token.isNullOrEmpty()
     }
 
     private fun navigateToHome() {
