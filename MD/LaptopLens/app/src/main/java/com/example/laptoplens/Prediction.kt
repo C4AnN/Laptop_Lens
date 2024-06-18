@@ -65,7 +65,7 @@ class Prediction : AppCompatActivity() {
 
         val dataSet = LineDataSet(entries, "Sales Data").apply {
             axisDependency = YAxis.AxisDependency.LEFT
-            color = getColor(R.color.purple_500)
+            color = getColor(android.R.color.holo_red_dark)
             valueTextColor = getColor(R.color.black)
             valueTextSize = 12f
         }

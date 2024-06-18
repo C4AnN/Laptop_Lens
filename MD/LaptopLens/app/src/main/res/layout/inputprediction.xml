@@ -58,9 +58,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Alert !!! "
+                android:layout_marginTop="15dp"
+                android:textColor="#FF0000"
+                android:layout_gravity="start"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginEnd="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="Export sales data for 1 month and input the data through the csv input field of the file below!!!"
+                android:text="Export sales data for 1 month and input the data through the csv input field of the file below !!!"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:justificationMode="inter_word" />
@@ -85,37 +96,39 @@
                 android:paddingTop="5dp"
                 android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/btnUploadCSV"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload CSV"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#4F772D"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="horizontal"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:padding="10dp">
+                android:layout_marginBottom="10dp">
 
                 <Button
-                    android:id="@+id/btnpredict"
-                    android:layout_width="146dp"
+                    android:id="@+id/btnUploadCSV"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/next3"
+                    android:text="Upload "
                     android:backgroundTint="#4F772D"
-                    android:text="Predict"
-                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
+                <Button
+                    android:id="@+id/btnpredict"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#2596be"
+                    android:drawableRight="@drawable/next2"
+                    android:text="Predict"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
             </LinearLayout>
+
 
         </LinearLayout>
     </LinearLayout>
