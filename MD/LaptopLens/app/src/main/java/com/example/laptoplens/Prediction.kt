@@ -27,7 +27,7 @@ class Prediction : AppCompatActivity() {
         val highEndChart = findViewById<LineChart>(R.id.high_end_chart)
 
         // Fetch predictions from API
-        RetrofitClient.apiService.getPredictions().enqueue(object : Callback<PredictionResponse> {
+        RetrofitClient.getApiService(this).getPredictions().enqueue(object : Callback<PredictionResponse> {
             override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.let { predictionResponse ->
@@ -55,8 +55,8 @@ class Prediction : AppCompatActivity() {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
             try {
                 val date = dateFormat.parse(salesData.date)
-                val timestamp = date?.time ?: index.toFloat() // Default to index if parsing fails
-                Entry(timestamp.toFloat(), salesData.sales.toFloat())
+                val timestamp = date?.time?.toFloat() ?: index.toFloat() // Default to index if parsing fails
+                Entry(timestamp, salesData.sales.toFloat())
             } catch (e: Exception) {
                 Log.e("Prediction", "Error parsing date: ${salesData.date}", e)
                 Entry(index.toFloat(), salesData.sales.toFloat()) // Handle parsing error gracefully
@@ -65,8 +65,8 @@ class Prediction : AppCompatActivity() {
 
         val dataSet = LineDataSet(entries, "Sales Data").apply {
             axisDependency = YAxis.AxisDependency.LEFT
-            color = resources.getColor(R.color.purple_500, theme)
-            valueTextColor = resources.getColor(R.color.black, theme)
+            color = getColor(R.color.purple_500)
+            valueTextColor = getColor(R.color.black)
             valueTextSize = 12f
         }
 

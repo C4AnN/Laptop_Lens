@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
+        // Initialize ApiService with context
+        apiService = RetrofitClient.getApiService(this)
+
         // Check if user is already logged in
         if (isLoggedIn()) {
             navigateToHome()
@@ -60,8 +63,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
-
-        apiService = RetrofitClient.apiService
     }
 
     override fun onBackPressed() {
@@ -102,12 +103,22 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 Log.d("Login", "Received response: ${response.code()}")
                 if (response.isSuccessful) {
-                    Log.d("Login", "Response is successful")
                     val responseBody = response.body()
-                    Log.d("Login", "Response body: $responseBody")
                     if (responseBody?.status == "success") {
-                        Log.d("Login", "Login success: ${responseBody.message}")
-                        saveLoginDetails(emailInput, passwordInput)
+                        Log.d("Login", "Response is successful")
+                        // Check for tokenId or refreshToken in response headers
+                        response.headers()["Authorization"]?.let { token ->
+                            if (token.startsWith("Bearer ")) {
+                                val actualToken = token.substring(7)
+                                saveLoginDetails(emailInput, actualToken)
+                                Log.d("Login", "Token saved from response header: $actualToken")
+                            }
+                        }
+                        // Alternatively, check tokenId in the response body
+                        responseBody.tokenId?.let { tokenId ->
+                            saveLoginDetails(emailInput, tokenId)
+                            Log.d("Login", "Token saved from response body: $tokenId")
+                        }
                         Toast.makeText(this@MainActivity, "Login successful!", Toast.LENGTH_SHORT).show()
                         navigateToHome()
                     } else {
@@ -127,27 +138,32 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveLoginDetails(email: String, password: String) {
+
+    private fun saveLoginDetails(email: String, token: String) {
         // Save login details to SharedPreferences
         val editor = sharedPreferences.edit()
         editor.putString("email", email)
-        editor.putString("password", password)
+        editor.putString("token", token)
         editor.apply()
+        Log.d("Login", "Saved token to SharedPreferences: $token")
     }
+
+
+
 
     private fun clearLoginDetails() {
         // Clear login details from SharedPreferences
         val editor = sharedPreferences.edit()
         editor.remove("email")
-        editor.remove("password")
+        editor.remove("token")
         editor.apply()
     }
 
     private fun isLoggedIn(): Boolean {
         // Check if user is logged in
         val email = sharedPreferences.getString("email", null)
-        val password = sharedPreferences.getString("password", null)
-        return !email.isNullOrEmpty() && !password.isNullOrEmpty()
+        val token = sharedPreferences.getString("token", null)
+        return !email.isNullOrEmpty() && !token.isNullOrEmpty()
     }
 
     private fun navigateToHome() {

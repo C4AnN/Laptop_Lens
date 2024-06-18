@@ -1,6 +1,6 @@
 package com.example.laptoplens
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -13,12 +13,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Profile : AppCompatActivity() {
+
     private lateinit var fullNameTextView: TextView
     private lateinit var positionTextView: TextView
     private lateinit var phoneTextView: TextView
     private lateinit var addressTextView: TextView
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
@@ -72,7 +72,7 @@ class Profile : AppCompatActivity() {
 
         if (email != null && password != null) {
             val logoutRequest = LogoutRequest(email, password)
-            val call = RetrofitClient.apiService.logout(logoutRequest)
+            val call = RetrofitClient.getApiService(this).logout(logoutRequest)
 
             call.enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {

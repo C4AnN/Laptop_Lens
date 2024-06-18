@@ -23,7 +23,7 @@ data class PredictionResponse(
 data class ApiResponse(
     val status: String,
     val message: String,
-    val refreshToken: String? // Optional field for refresh token
+    val tokenId: String? // Optional field for refresh token
 )
 
 data class User(
@@ -41,7 +41,23 @@ data class LogoutRequest(
 
 data class LoginRequest(
     val email: String,
-    val password: String
+    val password: String,
+    val tokenId: String? = null
+)
+
+data class StockResponse(
+    val status: String,
+    val data: List<ProductData>
+)
+
+data class ProductData(
+    val id: Int,
+    val name: String,
+    val vendor_name: String,
+    val price: String,
+    val total_stocks: Int,
+    val createdAt: String,
+    val updatedAt: String
 )
 
 

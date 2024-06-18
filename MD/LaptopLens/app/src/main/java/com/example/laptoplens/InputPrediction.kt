@@ -113,7 +113,7 @@ class InputPrediction : AppCompatActivity() {
             val requestBody = RequestBody.create(mediaType, tempFile)
             val body = MultipartBody.Part.createFormData("file", tempFile.name, requestBody)
 
-            val call = RetrofitClient.apiService.uploadCSV(body)
+            val call = RetrofitClient.getApiService(this).uploadCSV(body)
             call.enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     runOnUiThread {

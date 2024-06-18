@@ -43,6 +43,8 @@ class SignUp : AppCompatActivity() {
             }
         }
 
+        apiService = RetrofitClient.getApiService(this) // Initialize apiService from RetrofitClient
+
         val btnSignup = findViewById<Button>(R.id.btnsignup_signup)
         btnSignup.setOnClickListener {
             if (validateInput()) {
@@ -56,8 +58,6 @@ class SignUp : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-        apiService = RetrofitClient.apiService
     }
 
     private fun validateInput(): Boolean {
@@ -135,7 +135,8 @@ class SignUp : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@SignUp, response.body()?.message ?: "Sign up failed", Toast.LENGTH_SHORT).show()
+                    val message = response.body()?.message ?: "Sign up failed"
+                    Toast.makeText(this@SignUp, message, Toast.LENGTH_SHORT).show()
                 }
             }
 
