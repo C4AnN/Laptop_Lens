@@ -28,4 +28,7 @@ interface ApiService {
 
     @GET("stocks")
     fun getStock(@Query("name") name: String): Call<StockResponse>
+
+    @POST("stocks/incoming")
+    fun addProduct(@Body product: ProductIncome): Call<ApiResponse>
 }

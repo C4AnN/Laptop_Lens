@@ -59,6 +59,14 @@ data class ProductData(
     val updatedAt: String
 )
 
+data class ProductIncome(
+    val name: String,
+    val vendor_name: String,
+    val date: String,
+    val price: Int,
+    val quantity: Int
+)
+
 
 
 
