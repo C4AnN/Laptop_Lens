@@ -63,10 +63,10 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Position: "
+                android:text="First Name"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -88,10 +88,10 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Phone: "
+                android:text="Last Name"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -113,10 +113,10 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Address: "
+                android:text="Email"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -135,19 +135,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btneditprofil"
-                android:layout_width="135dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#4F772D"
-                android:gravity="center"
-                android:text="Edit Profil"
-                android:layout_marginTop="10dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnlogout"

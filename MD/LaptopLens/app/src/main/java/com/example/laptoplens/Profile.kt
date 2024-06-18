@@ -41,12 +41,6 @@ class Profile : AppCompatActivity() {
         phoneTextView.text = sharedPreferences.getString("PHONE", "")
         addressTextView.text = sharedPreferences.getString("ADDRESS", "")
 
-        val btneditprofil = findViewById<Button>(R.id.btneditprofil)
-        btneditprofil.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
-            startActivity(intent)
-        }
-
         val btnlogout = findViewById<Button>(R.id.btnlogout)
         btnlogout.setOnClickListener {
             logout()
