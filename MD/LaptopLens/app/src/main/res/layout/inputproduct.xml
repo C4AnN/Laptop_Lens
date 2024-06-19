@@ -145,7 +145,7 @@
                 android:drawableLeft="@drawable/quantity"
                 android:drawablePadding="14dp"
                 android:inputType="number"
-                android:hint="Only Number"
+                android:hint="Enter quantity"
                 android:paddingLeft="15dp"
                 android:paddingTop="5dp"
                 android:textSize="15sp" />
@@ -200,7 +200,7 @@
                         android:id="@+id/nameAfterInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Macbook"
+                        android:text="-"
                         android:textSize="17sp" />
 
                     <TextView
@@ -217,7 +217,7 @@
                         android:id="@+id/stockAfterInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:text="-"
                         android:textSize="17sp" />
                 </LinearLayout>
 
