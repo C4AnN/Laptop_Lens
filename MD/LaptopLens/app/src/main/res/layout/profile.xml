@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="356dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
@@ -40,22 +40,19 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="John Doe"
+            android:text=""
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btneditprofil"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#4F772D"
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:text="Edit Profil"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button

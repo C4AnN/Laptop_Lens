@@ -1,5 +1,6 @@
 package com.example.laptoplens
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -65,8 +66,8 @@ class Prediction : AppCompatActivity() {
 
         val dataSet = LineDataSet(entries, "Sales Data").apply {
             axisDependency = YAxis.AxisDependency.LEFT
-            color = getColor(android.R.color.holo_red_dark)
-            valueTextColor = getColor(R.color.black)
+            color = Color.BLACK // Mengubah warna garis menjadi hitam
+            valueTextColor = Color.BLACK // Mengubah warna teks nilai menjadi hitam
             valueTextSize = 12f
         }
 

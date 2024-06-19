@@ -7,6 +7,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.CookieHandler
+import java.net.CookieManager
 
 object RetrofitClient {
     private const val BASE_URL = "https://api-434e63m7za-et.a.run.app/"
@@ -34,6 +36,8 @@ object RetrofitClient {
 
         return OkHttpClient.Builder()
             .addInterceptor(logging)
+            .addInterceptor(AddCookiesInterceptor(context))
+            .addInterceptor(ReceivedCookiesInterceptor(context))
             .addInterceptor(Interceptor { chain ->
                 val original = chain.request()
                 val response = chain.proceed(original)

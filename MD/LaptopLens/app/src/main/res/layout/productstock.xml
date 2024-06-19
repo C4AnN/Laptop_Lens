@@ -117,7 +117,7 @@
                     android:id="@+id/productNameValueTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Macbook"
+                    android:text="-"
                     android:textSize="17sp" />
 
                 <TextView
@@ -135,7 +135,7 @@
                     android:id="@+id/stockValueTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text="-"
                     android:textSize="17sp" />
 
             </LinearLayout>

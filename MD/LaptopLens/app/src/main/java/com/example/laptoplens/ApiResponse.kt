@@ -70,7 +70,7 @@ data class IncomingStockData (
     val vendor_name: String,
     val price: String,
     val date: String,
-    val total_stocks: Int,
+    val sales: Int,
     val createdAt: String,
     val updatedAt: String
 )

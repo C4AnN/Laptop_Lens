@@ -16,6 +16,7 @@ import retrofit2.Response
 class Profile : AppCompatActivity() {
 
     private lateinit var fullNameTextView: TextView
+    private lateinit var emailTextView: TextView
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,8 @@ class Profile : AppCompatActivity() {
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        fullNameTextView = findViewById(R.id.fullNameTextView)
+        emailTextView = findViewById(R.id.emailTextView)
 
         // Check if user is logged in
         if (!isLoggedIn()) {
@@ -43,13 +46,14 @@ class Profile : AppCompatActivity() {
                 if(response.isSuccessful) {
                     val userData = response.body()
                     if (userData != null && userData.status == "Success") {
-                        fullNameTextView.text = userData.data.firstName + userData.data.lastName
+                        fullNameTextView.text = userData.data.firstName + " " +  userData.data.lastName
+                        emailTextView.text = userData.data.email
                     }
                 }
             }
 
             override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@Profile, "Something happened", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -58,12 +62,6 @@ class Profile : AppCompatActivity() {
 
         // Retrieve user details from SharedPreferences
         fullNameTextView.text = sharedPreferences.getString("FULL_NAME", "")
-
-        val btneditprofil = findViewById<Button>(R.id.btneditprofil)
-        btneditprofil.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
-            startActivity(intent)
-        }
 
         val btnlogout = findViewById<Button>(R.id.btnlogout)
         btnlogout.setOnClickListener {

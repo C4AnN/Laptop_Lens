@@ -60,7 +60,7 @@ class ProductStock : AppCompatActivity() {
     }
 
     private fun handleErrorResponse() {
-        productNameTextView.text = "Error"
-        stockTextView.text = "Error"
+        productNameTextView.text = "Barang Tidak Ditemukan"
+        stockTextView.text = "-"
     }
 }

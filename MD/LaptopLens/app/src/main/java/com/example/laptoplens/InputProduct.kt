@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
@@ -20,6 +21,8 @@ class InputProduct : AppCompatActivity() {
     lateinit var priceinput: EditText
     lateinit var dateinput: EditText
     lateinit var quantityinput: EditText
+    lateinit var nameAfterInput: TextView
+    lateinit var stockAfterInput: TextView
 
     @SuppressLint("MissingInflatedId", "NewApi", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,8 @@ class InputProduct : AppCompatActivity() {
         priceinput = findViewById(R.id.priceinput)
         dateinput = findViewById(R.id.dateinput)
         quantityinput = findViewById(R.id.quantityinput)
+        nameAfterInput = findViewById(R.id.nameAfterInput)
+        stockAfterInput = findViewById(R.id.stockAfterInput)
 
         // Setup DatePickerDialog for dateinput
         dateinput.setOnClickListener {
@@ -41,14 +46,13 @@ class InputProduct : AppCompatActivity() {
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(this,
-                DatePickerDialog.OnDateSetListener { view, selectedYear, selectedMonth, selectedDay ->
+                DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
                     // Set the selected date in the EditText
                     val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                     dateinput.setText(selectedDate)
                 }, year, month, day)
             datePickerDialog.show()
         }
-
 
         val btnsaveinput = findViewById<Button>(R.id.btnsaveinputproduct)
         btnsaveinput.setOnClickListener {
@@ -72,6 +76,11 @@ class InputProduct : AppCompatActivity() {
                     call: Call<IncomingResp>,
                     response: Response<IncomingResp>
                 ) {
+                    if (data.name.isEmpty() || data.vendor_name.isEmpty() || data.date.isEmpty() || data.price <= 0 || data.quantity <= 0) {
+                        Toast.makeText(this@InputProduct, "Please fill in all fields with valid data", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+
                     if(response.isSuccessful) {
                         Toast.makeText(this@InputProduct, "Success to insert data!", Toast.LENGTH_SHORT).show()
                         productnameinput.text.clear()
@@ -79,6 +88,9 @@ class InputProduct : AppCompatActivity() {
                         priceinput.text.clear()
                         dateinput.text.clear()
                         quantityinput.text.clear()
+
+                        nameAfterInput.text = response.body()?.data?.name
+                        stockAfterInput.text = response.body()?.data?.sales.toString()
                     }
                 }
 
