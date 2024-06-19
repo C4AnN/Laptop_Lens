@@ -120,6 +120,7 @@
                 android:drawableLeft="@drawable/date"
                 android:drawablePadding="14dp"
                 android:hint="Choose the date"
+                android:inputType="datetime"
                 android:paddingLeft="15dp"
                 android:paddingTop="5dp"
                 android:textSize="15sp"
@@ -157,7 +158,7 @@
                 android:layout_marginTop="10dp">
 
                 <Button
-                    android:id="@+id/btnsaveinput"
+                    android:id="@+id/btnsaveinputproduct"
                     android:layout_width="146dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#4F772D"

@@ -6,7 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.*
 
 class InputProduct : AppCompatActivity() {
@@ -16,7 +21,7 @@ class InputProduct : AppCompatActivity() {
     lateinit var dateinput: EditText
     lateinit var quantityinput: EditText
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "NewApi", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inputproduct)
@@ -45,10 +50,43 @@ class InputProduct : AppCompatActivity() {
         }
 
 
-        val btnsaveinput = findViewById<Button>(R.id.btnsaveinput)
+        val btnsaveinput = findViewById<Button>(R.id.btnsaveinputproduct)
         btnsaveinput.setOnClickListener {
-            intent = Intent(this, Inventory::class.java)
-            startActivity(intent)
+            val inputFormat = SimpleDateFormat("dd/MM/yyyy")
+            val outputFormat = SimpleDateFormat("yyyy-MM-dd")
+
+            val date = inputFormat.parse(dateinput.text.toString())
+
+            val data = IncomingStockReq(
+                name = productnameinput.text.toString(),
+                vendor_name = brandinput.text.toString(),
+                date = outputFormat.format(date),
+                price = java.lang.Double.parseDouble(priceinput.text.toString()),
+                quantity = Integer.parseInt(quantityinput.text.toString())
+            )
+            val apiService = RetrofitClient.getApiService(this)
+            val call = apiService.postIncomingStock(data)
+
+            call.enqueue(object : Callback<IncomingResp>{
+                override fun onResponse(
+                    call: Call<IncomingResp>,
+                    response: Response<IncomingResp>
+                ) {
+                    if(response.isSuccessful) {
+                        Toast.makeText(this@InputProduct, "Success to insert data!", Toast.LENGTH_SHORT).show()
+                        productnameinput.text.clear()
+                        brandinput.text.clear()
+                        priceinput.text.clear()
+                        dateinput.text.clear()
+                        quantityinput.text.clear()
+                    }
+                }
+
+                override fun onFailure(call: Call<IncomingResp>, t: Throwable) {
+                    Toast.makeText(this@InputProduct, "Failed to insert data!", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
     }
 }

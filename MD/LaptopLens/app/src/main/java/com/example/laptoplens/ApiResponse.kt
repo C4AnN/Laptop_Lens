@@ -49,6 +49,52 @@ data class StockResponse(
     val data: List<ProductData>
 )
 
+data class IncomingStockReq (
+    val name: String,
+    val vendor_name: String,
+    val price: Double,
+    val date: String,
+    val quantity: Int
+)
+
+data class OutgoingStockReq (
+    val name: String,
+    val price: Double,
+    val date: String,
+    val quantity: Int
+)
+
+data class IncomingStockData (
+    val id: Int,
+    val name: String,
+    val vendor_name: String,
+    val price: String,
+    val date: String,
+    val total_stocks: Int,
+    val createdAt: String,
+    val updatedAt: String
+)
+
+data class OutgoingStockData (
+    val id: Int,
+    val name: String,
+    val price: String,
+    val date: String,
+    val total_stocks: Int,
+    val createdAt: String,
+    val updatedAt: String
+)
+
+data class IncomingResp (
+    val status: String,
+    val data: IncomingStockData
+)
+
+data class OutgoingResp (
+    val status: String,
+    val data: OutgoingStockData
+)
+
 data class ProductData(
     val id: Int,
     val name: String,
@@ -59,8 +105,13 @@ data class ProductData(
     val updatedAt: String
 )
 
+data class UserData (
+    val firstName: String,
+    val lastName: String,
+    val email: String
+)
 
-
-
-
-
+data class UserDataResponse (
+    val status: String,
+    val data: UserData
+)

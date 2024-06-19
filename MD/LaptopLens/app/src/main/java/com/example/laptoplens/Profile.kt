@@ -1,5 +1,6 @@
 package com.example.laptoplens
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,13 +9,13 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Profile : AppCompatActivity() {
 
     private lateinit var fullNameTextView: TextView
-    private lateinit var positionTextView: TextView
-    private lateinit var phoneTextView: TextView
-    private lateinit var addressTextView: TextView
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +31,33 @@ class Profile : AppCompatActivity() {
             return
         }
 
+        val apiService = RetrofitClient.getApiService(this)
+        val call = apiService.getUserData()
+
+        call.enqueue(object : Callback<UserDataResponse>{
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<UserDataResponse>,
+                response: Response<UserDataResponse>
+            ) {
+                if(response.isSuccessful) {
+                    val userData = response.body()
+                    if (userData != null && userData.status == "Success") {
+                        fullNameTextView.text = userData.data.firstName + userData.data.lastName
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
         fullNameTextView = findViewById(R.id.fullNameTextView)
-        positionTextView = findViewById(R.id.positionTextView)
-        phoneTextView = findViewById(R.id.phoneTextView)
-        addressTextView = findViewById(R.id.addressTextView)
 
         // Retrieve user details from SharedPreferences
         fullNameTextView.text = sharedPreferences.getString("FULL_NAME", "")
-        positionTextView.text = sharedPreferences.getString("POSITION", "")
-        phoneTextView.text = sharedPreferences.getString("PHONE", "")
-        addressTextView.text = sharedPreferences.getString("ADDRESS", "")
 
         val btneditprofil = findViewById<Button>(R.id.btneditprofil)
         btneditprofil.setOnClickListener {

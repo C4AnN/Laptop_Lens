@@ -44,7 +44,8 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
+            android:id="@+id/productnamerecord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/oval_tepi"
@@ -64,7 +65,8 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
+            android:id="@+id/pricerecord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -85,7 +87,8 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
+            android:id="@+id/daterecord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -107,7 +110,8 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
+            android:id="@+id/quantityrecord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -129,13 +133,13 @@
             android:padding="10dp">
 
             <Button
-                android:id="@+id/btnbackrecord"
+                android:id="@+id/btnsaverecord"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:backgroundTint="#4F772D"
-                android:text="Back"
+                android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
