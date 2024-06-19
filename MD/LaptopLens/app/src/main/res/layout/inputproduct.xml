@@ -20,11 +20,24 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Complete this form to add products to the database"
-        android:textSize="15sp" />
+        android:text="Alert !!! "
+        android:layout_marginTop="15dp"
+        android:textColor="#FF0000"
+        android:layout_gravity="start"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginEnd="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Complete this form to add products to the database !!!"
+        android:textSize="13sp"
+        android:textColor="#000000"
+        android:textStyle="bold"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
