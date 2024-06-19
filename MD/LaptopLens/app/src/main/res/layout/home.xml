@@ -30,7 +30,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:fillViewport="true">
 
@@ -41,216 +41,59 @@
             android:background="@drawable/background2"
             android:padding="32dp">
 
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="45dp"
-                android:adjustViewBounds="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="What Is Laptop Lens ?"
-                android:layout_marginTop="20dp"
+                android:text="Low-end Product Prediction"
                 android:textColor="#000000"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/low_end_chart_last"
                 android:layout_width="match_parent"
-                android:layout_height="480dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/background3"
+                android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-                
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:src="@drawable/logo2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Laptoplens is an application that helps laptop sellers prepare stock items according to customer demand through the sales prediction feature. Laptoplens provides:"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:text="• Monitoring stock by providing updated information regarding the number of available stock items"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:justificationMode="inter_word" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:text="• A prediction feature that uses an algorithm to predict stock requirements based on previous period sales data to help avoid overstock and stockouts."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:justificationMode="inter_word" />
-
-            </LinearLayout>
+                android:padding="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Purpose-Driven"
-                android:layout_marginTop="20dp"
+                android:text="Mid-end Product Prediction"
                 android:textColor="#000000"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/mid_end_chart_last"
                 android:layout_width="match_parent"
-                android:layout_height="155dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/background3"
+                android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Integrate accurate demand forecasting in stock management, with a focus on improving operational efficiency, reducing the risk of stock discrepancies, and enhancing customer satisfaction."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-            </LinearLayout>
+                android:padding="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data-Driven"
-                android:layout_marginTop="20dp"
+                android:text="High-end Product Prediction"
                 android:textColor="#000000"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/high_end_chart_last"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/background3"
+                android:background="@drawable/oval_button"
                 android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Analysis of historical data helps in making more informed inventory decisions and with real-time data, it is possible to adjust stock to demand. "
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stakeholders related to and benefitted"
-                android:layout_marginTop="20dp"
-                android:textColor="#000000"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/background3"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="• Business owners can be helped in improving profitability and customer satisfaction."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="• Inventory managers benefit from simpler operations in managing stock."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="• Suppliers benefit from smoother supply chains and more reliable partnerships."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="• Customers will have a better shopping experience with consistent product availability."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Government Reasoning"
-                android:layout_marginTop="20dp"
-                android:textColor="#000000"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/background3"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Oversaw inventory management strategies and demand forecasting for the technology industry, with an aim to optimize laptop manufacturers' production efficiency and mitigate market risks such as overstock or under-stock."
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:justificationMode="inter_word" />
-
-            </LinearLayout>
+                android:padding="24dp" />
 
         </LinearLayout>
 
@@ -261,11 +104,12 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/menuhome"
+            android:id="@+id/menuhomelast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/oval3"
-            android:gravity="center">
+            android:gravity="center"
+            tools:ignore="UselessParent">
 
             <ImageButton
                 android:id="@+id/image_home"
