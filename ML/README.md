@@ -19,6 +19,8 @@ The dataset we use comes from [Kaggle][data-kaggle] (raw dataset) and process it
 
 </details>
 
+<details>
+
 <summary>Visualization</summary>
   
 ![ML-summary](visual.png)
