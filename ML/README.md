@@ -19,4 +19,4 @@ To run this model you need to follow these steps:
 - Convert the model to `.h5` format
 
 
-[link-id]: 
+[link-id]: https://github.com/C4AnN/Laptop_Lens/blob/main/ML/Dataset/Data_Barang_Keluar.csv
