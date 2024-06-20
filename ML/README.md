@@ -13,15 +13,15 @@ The dataset we use comes from [Kaggle][data-kaggle] (raw dataset) and process it
 <details>
 <summary>Model Accuracy & Loss</summary>
   
-![ML-summary](ML/low.png)
-![ML-summary](ML/mid.png)
-![ML-summary](ML/high.png)
+![ML-summary](low.png)
+![ML-summary](mid.png)
+![ML-summary](high.png)
 
 </details>
 
 <summary>Visualization</summary>
   
-![ML-summary](ML/visual.png)
+![ML-summary](visual.png)
 
 </details>
 
