@@ -1,6 +1,7 @@
 package com.example.laptoplens
 
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -29,6 +30,9 @@ interface ApiService {
     @GET("stocks")
     fun getStock(@Query("name") name: String): Call<StockResponse>
 
+    @GET("stocks")
+    fun getStocks(): Call<List<ProductOutData>>
+
     @GET("user")
     fun getUserData(): Call<UserDataResponse>
 
@@ -37,4 +41,7 @@ interface ApiService {
 
     @POST("stocks/incoming")
     fun postIncomingStock(@Body incomingStockReq: IncomingStockReq): Call<IncomingResp>
+
+    @POST("stocks/export")
+    fun exportData(@Query("month") month: Int): Call<ResponseBody>
 }

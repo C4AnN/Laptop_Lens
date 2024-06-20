@@ -115,3 +115,13 @@ data class UserDataResponse (
     val status: String,
     val data: UserData
 )
+
+data class ExportRequest(
+    val month: Int
+)
+
+data class ProductOutData(
+    val name: String,
+    val price: Double,
+    val stock: Int
+)

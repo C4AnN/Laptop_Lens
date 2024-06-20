@@ -2,21 +2,23 @@ package com.example.laptoplens
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class RecordSale : AppCompatActivity()
-{
+class RecordSale : AppCompatActivity() {
     private lateinit var namerecord: EditText
     private lateinit var daterecord: EditText
     private lateinit var quantityrecord: EditText
@@ -70,20 +72,79 @@ class RecordSale : AppCompatActivity()
                     call: Call<OutgoingResp>,
                     response: Response<OutgoingResp>
                 ) {
-                    if(response.isSuccessful) {
+                    if (response.isSuccessful) {
                         Toast.makeText(this@RecordSale, "Success to insert data!", Toast.LENGTH_SHORT).show()
                         namerecord.text.clear()
                         pricerecord.text.clear()
                         daterecord.text.clear()
                         quantityrecord.text.clear()
+                    } else {
+                        Toast.makeText(this@RecordSale, "Failed to insert data!", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<OutgoingResp>, t: Throwable) {
                     Toast.makeText(this@RecordSale, "Failed to insert data!", Toast.LENGTH_SHORT).show()
                 }
-
             })
         }
+
+        val btnExport = findViewById<Button>(R.id.btnexport)
+        btnExport.setOnClickListener {
+            exportDataForPreviousMonth()
+        }
     }
+
+    private fun exportDataForPreviousMonth() {
+        // Calculate the previous month
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MONTH, -1)
+        val previousMonth = calendar.get(Calendar.MONTH) + 1  // Months are 0-based
+
+        val apiService = RetrofitClient.getApiService(this)
+        val call = apiService.exportData(previousMonth)
+
+        call.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { body ->
+                        try {
+                            val fileName = "exported_datasales_monthly.csv"
+                            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                            val file = File(downloadsDir, fileName)
+
+                            // Check if the file already exists
+                            if (file.exists()) {
+                                // Delete the existing file
+                                file.delete()
+                            }
+
+                            // Create new FileOutputStream
+                            val outputStream = FileOutputStream(file)
+                            outputStream.use {
+                                it.write(body.bytes())
+                            }
+                            Toast.makeText(this@RecordSale, "Data exported successfully! Saved to $fileName", Toast.LENGTH_SHORT).show()
+                        } catch (e: Exception) {
+                            Log.e("RecordSale", "Error saving CSV file", e)
+                            Toast.makeText(this@RecordSale, "Failed to save CSV file", Toast.LENGTH_SHORT).show()
+                        }
+                    } ?: run {
+                        Toast.makeText(this@RecordSale, "Failed to export data: Empty response body", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Log response error body
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("RecordSale", "Failed to export data: $errorBody")
+                    Toast.makeText(this@RecordSale, "Failed to export data: $errorBody", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(this@RecordSale, "Failed to export data!", Toast.LENGTH_SHORT).show()
+                Log.e("RecordSale", "Error: ${t.message}")
+            }
+        })
+    }
+
 }
