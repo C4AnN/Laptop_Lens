@@ -8,14 +8,14 @@ The Machine Learning part of this application is a sales prediction system. We c
 
 The dataset we use comes from [Kaggle][data-kaggle] (raw dataset) and process it to the data [above][link-id].
 
-## Model Architecture
+## Model Accuracy & Loss
 
+<details>
+<summary>Model Accuracy & Loss</summary>
 
-1.  We use the [Embedding Layer][embedding] to convert the words into a numerical representation. Each word will be represented with a word space vector.
-2.  [Bidirectional LSTM layer][bidirectional]. LSTM is a type of recurrence model that can overcome the vanishing gradient problem in artificial neural networks.
-3.  [Dropout Layer][dropout] is used to avoid overfitting in the model.
+(ML/low-end category.png)
 
-The model achieved a loss of 0.1744 and an accuracy of 0.9292 on the training data. While in the validation data, the model achieved a loss of 0.6373 and an accuracy of 0.7874.
+</details>
 
 
 ## How to replicate our projects
